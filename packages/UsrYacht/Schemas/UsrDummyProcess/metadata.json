@@ -10,7 +10,22 @@
       "B3": [],
       "B6": "06328b4f-137b-45ab-ab03-9bf2601df0ec",
       "B8": "10.0.0.801",
-      "FJ1": [],
+      "FJ1": [
+        {
+          "BL1": "Terrasoft.Core.Process.ProcessSchemaParameter",
+          "UId": "1900444e-d038-41bf-bc18-22ebeb448cc1",
+          "A2": "ProcessSchemaParameter1",
+          "A3": "9f0c7b6a-cfec-45f3-810c-85ca41abf5a9",
+          "A4": "9f0c7b6a-cfec-45f3-810c-85ca41abf5a9",
+          "L1": "b295071f-7ea9-4e62-8d1a-919bf3732ff2",
+          "L8": {
+            "GS1": 3,
+            "GS2": "[#Lookup.65b30947-e50f-4250-a76e-2743e45b190a.d9a261d1-5ac3-4257-8cf6-d218895edb25#]",
+            "GS5": "9f0c7b6a-cfec-45f3-810c-85ca41abf5a9"
+          },
+          "L9": "65b30947-e50f-4250-a76e-2743e45b190a"
+        }
+      ],
       "IJ1": true,
       "BK8": "bb4d6607-026b-4b27-b640-8f5c77c1e89d",
       "IJ10": true,

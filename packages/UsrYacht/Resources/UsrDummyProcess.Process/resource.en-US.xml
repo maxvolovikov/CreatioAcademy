@@ -7,6 +7,8 @@
 			<Item Name="LaneSets.LaneSet1.Lanes.Lane1.Caption" Value="Lane 1" />
 			<Item Name="NotificationCaption.Caption" Value="Process instance caption" />
 			<Item Name="NotificationCaption.DisplayValue" Value="[#Process name#]" />
+			<Item Name="Parameters.ProcessSchemaParameter1.Caption" Value="Parameter 1" />
+			<Item Name="Parameters.ProcessSchemaParameter1.DisplayValue" Value="[#Lookup.Traffic lights.Yellow.d9a261d1-5ac3-4257-8cf6-d218895edb25#]" />
 		</Items>
 	</Group>
 </Resources>
