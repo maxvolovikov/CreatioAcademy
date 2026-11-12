@@ -126,7 +126,7 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 					"visible": true,
 					"readonly": false,
 					"placeholder": "",
-					"valueDetails": null
+					"valueDetails": "$Status_ValueDetails"
 				},
 				"parentName": "SideAreaProfileContainer",
 				"propertyName": "items",
@@ -226,6 +226,29 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 			},
 			{
 				"operation": "insert",
+				"name": "YachtNumber",
+				"values": {
+					"layoutConfig": {
+						"column": 1,
+						"colSpan": 1,
+						"row": 7,
+						"rowSpan": 1
+					},
+					"type": "crt.Input",
+					"label": "$Resources.Strings.PDS_UsrYachtNumber_bkrfiow",
+					"control": "$PDS_UsrYachtNumber_bkrfiow",
+					"placeholder": "",
+					"tooltip": "",
+					"readonly": false,
+					"multiline": false,
+					"labelPosition": "auto"
+				},
+				"parentName": "SideAreaProfileContainer",
+				"propertyName": "items",
+				"index": 6
+			},
+			{
+				"operation": "insert",
 				"name": "Length",
 				"values": {
 					"layoutConfig": {
@@ -269,7 +292,8 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 						"colSpan": 1,
 						"row": 1,
 						"rowSpan": 1
-					}
+					},
+					"secondaryDisplayValue": "Description"
 				},
 				"parentName": "GeneralInfoTabContainer",
 				"propertyName": "items",
@@ -335,6 +359,26 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 				"parentName": "GeneralInfoTab",
 				"propertyName": "items",
 				"index": 1
+			},
+			{
+				"operation": "insert",
+				"name": "Categories",
+				"values": {
+					"type": "crt.MultiSelect",
+					"label": "#ResourceString(Categories_label)#",
+					"recordId": "$Id",
+					"recordRelationColumnName": "UsrYacht",
+					"selectSchemaName": "UsrCategoryInYacht",
+					"selectColumnName": "UsrCategory",
+					"visible": true,
+					"labelPosition": "auto",
+					"placeholder": "",
+					"tooltip": "",
+					"required": false
+				},
+				"parentName": "GeneralInfoTab",
+				"propertyName": "items",
+				"index": 2
 			}
 		]/**SCHEMA_VIEW_CONFIG_DIFF*/,
 		viewModelConfigDiff: /**SCHEMA_VIEW_MODEL_CONFIG_DIFF*/[
@@ -450,6 +494,19 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 						"modelConfig": {
 							"path": "PDS.UsrImage"
 						}
+					},
+					"Status_ValueDetails": {
+						"modelConfig": {
+							"path": "PDS.UsrStatusDescription"
+						}
+					},
+					"PDS_UsrYachtNumber_bkrfiow": {
+						"modelConfig": {
+							"path": "PDS.UsrYachtNumber"
+						}
+					},
+					"Categories_List_Items_Predefined_Filter": {
+						"value": null
 					}
 				}
 			},
@@ -482,7 +539,13 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 					"PDS": {
 						"type": "crt.EntityDataSource",
 						"config": {
-							"entitySchemaName": "UsrYacht"
+							"entitySchemaName": "UsrYacht",
+							"attributes": {
+								"UsrStatusDescription": {
+									"path": "UsrStatus.Description",
+									"type": "ForwardReference"
+								}
+							}
 						},
 						"scope": "page"
 					}
