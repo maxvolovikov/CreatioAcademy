@@ -40,6 +40,26 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 			},
 			{
 				"operation": "insert",
+				"name": "PushMeButton",
+				"values": {
+					"type": "crt.Button",
+					"caption": "#ResourceString(PushMeButton_caption)#",
+					"color": "outline",
+					"disabled": false,
+					"size": "large",
+					"iconPosition": "only-text",
+					"visible": true,
+					"clicked": {
+						"request": "usr.PushButtonRequest"
+					},
+					"clickMode": "default"
+				},
+				"parentName": "ActionButtonsContainer",
+				"propertyName": "items",
+				"index": 0
+			},
+			{
+				"operation": "insert",
 				"name": "Image",
 				"values": {
 					"layoutConfig": {
@@ -246,6 +266,29 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 				"parentName": "SideAreaProfileContainer",
 				"propertyName": "items",
 				"index": 6
+			},
+			{
+				"operation": "insert",
+				"name": "TicketPrice",
+				"values": {
+					"layoutConfig": {
+						"column": 1,
+						"colSpan": 1,
+						"row": 8,
+						"rowSpan": 1
+					},
+					"type": "crt.NumberInput",
+					"label": "$Resources.Strings.PDS_UsrTicketPrice_jxs6l6s",
+					"control": "$PDS_UsrTicketPrice_jxs6l6s",
+					"readonly": false,
+					"placeholder": "",
+					"labelPosition": "auto",
+					"tooltip": "",
+					"visible": false
+				},
+				"parentName": "SideAreaProfileContainer",
+				"propertyName": "items",
+				"index": 7
 			},
 			{
 				"operation": "insert",
@@ -507,6 +550,11 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 					},
 					"Categories_List_Items_Predefined_Filter": {
 						"value": null
+					},
+					"PDS_UsrTicketPrice_jxs6l6s": {
+						"modelConfig": {
+							"path": "PDS.UsrTicketPrice"
+						}
 					}
 				}
 			},
@@ -552,7 +600,36 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 				}
 			}
 		]/**SCHEMA_MODEL_CONFIG_DIFF*/,
-		handlers: /**SCHEMA_HANDLERS*/[]/**SCHEMA_HANDLERS*/,
+		handlers: /**SCHEMA_HANDLERS*/[
+			            {
+                request: "usr.PushButtonRequest",
+                /* Implementation of the custom query handler. */
+                handler: async (request, next) => {
+                    console.log("Button works...");
+                    Terrasoft.showInformation("My button was pressed.");
+                    var price = await request.$context.PDS_UsrPrice_kc2lvcw;
+                    console.log("Price = " + price);
+                    request.$context.PDS_UsrComment_bp69885 = "comment from JS code!";
+                    /* Call the next handler if it exists and return its result. */
+                    return next?.handle(request);
+                }
+            },
+			                {
+                request: "crt.HandleViewModelAttributeChangeRequest",
+                /* The custom implementation of the system query handler. */
+                handler: async (request, next) => {
+                     if (request.attributeName === 'PDS_UsrPrice_kc2lvcw' ||                 // if price changed
+                       request.attributeName === 'PDS_UsrPassengerCount_0vclyta' ) {         // or Passenger count changed
+                        let price = await request.$context.PDS_UsrPrice_kc2lvcw;
+                        let passengers = await request.$context.PDS_UsrPassengerCount_0vclyta;
+                        let ticket_price = price / passengers;
+                        request.$context.PDS_UsrTicketPrice_jxs6l6s = ticket_price;
+                    }
+                    /* Call the next handler if it exists and return its result. */
+                    return next?.handle(request);
+                }
+            }
+		]/**SCHEMA_HANDLERS*/,
 		converters: /**SCHEMA_CONVERTERS*/{}/**SCHEMA_CONVERTERS*/,
 		validators: /**SCHEMA_VALIDATORS*/{}/**SCHEMA_VALIDATORS*/
 	};
