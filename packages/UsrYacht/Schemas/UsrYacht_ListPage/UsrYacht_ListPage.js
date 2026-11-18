@@ -17,8 +17,17 @@ define("UsrYacht_ListPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 				"operation": "merge",
 				"name": "FolderTree",
 				"values": {
-					"sourceSchemaName": "FolderTree",
 					"rootSchemaName": "UsrYacht"
+				}
+			},
+			{
+				"operation": "merge",
+				"name": "Filters",
+				"values": {
+					"layoutConfig": {
+						"alignSelf": "stretch",
+						"width": 110
+					}
 				}
 			},
 			{
@@ -30,21 +39,58 @@ define("UsrYacht_ListPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 							"id": "f252f581-0ccf-44ac-b7c9-c00df2ad9919",
 							"code": "PDS_UsrName",
 							"caption": "#ResourceString(PDS_UsrName)#",
-							"dataValueType": 1
+							"dataValueType": 1,
+							"width": 187
 						},
 						{
-							"id": "c8689d78-80ba-4e71-8cf2-fa478e3be5bc",
-							"code": "PDS_CreatedOn",
-							"caption": "#ResourceString(PDS_CreatedOn)#",
-							"dataValueType": 7
+							"id": "b94a5d9b-e92a-1118-daca-fa9529e7c3ad",
+							"code": "PDS_UsrManager",
+							"caption": "#ResourceString(PDS_UsrManager)#",
+							"dataValueType": 10,
+							"width": 154
 						},
 						{
-							"id": "fd4b3485-a46e-4219-b775-adef1210fe51",
-							"code": "PDS_CreatedBy",
-							"caption": "#ResourceString(PDS_CreatedBy)#",
-							"dataValueType": 10
+							"id": "5225f730-0319-e46b-dff2-a39bcfd30f8a",
+							"code": "PDS_UsrCaptain",
+							"caption": "#ResourceString(PDS_UsrCaptain)#",
+							"dataValueType": 10,
+							"width": 125
 						},
-					]
+						{
+							"id": "89e672f1-c9ac-4224-8234-09fb6ac0509c",
+							"code": "PDS_UsrStatus",
+							"caption": "#ResourceString(PDS_UsrStatus)#",
+							"dataValueType": 10,
+							"width": 129
+						},
+						{
+							"id": "a6b63307-7ed3-7219-26ea-2cac31fdad98",
+							"code": "PDS_UsrPrice",
+							"caption": "#ResourceString(PDS_UsrPrice)#",
+							"dataValueType": 32,
+							"width": 182
+						}
+					],
+					"features": {
+						"rows": {
+							"selection": false
+						},
+						"header": {
+							"visible": true
+						},
+						"columns": {
+							"dragAndDrop": true,
+							"resizing": true,
+							"sorting": true,
+							"adding": false
+						},
+						"editable": {
+							"enable": false,
+							"floatingEditPanel": false,
+							"itemsCreation": false
+						}
+					},
+					"visible": true
 				}
 			},
 			{
@@ -79,16 +125,43 @@ define("UsrYacht_ListPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 							"path": "PDS.UsrName"
 						}
 					},
-					"PDS_CreatedOn": {
+					"PDS_UsrManager": {
 						"modelConfig": {
-							"path": "PDS.CreatedOn"
+							"path": "PDS.UsrManager"
 						}
 					},
-					"PDS_CreatedBy": {
+					"PDS_UsrCaptain": {
 						"modelConfig": {
-							"path": "PDS.CreatedBy"
+							"path": "PDS.UsrCaptain"
+						}
+					},
+					"PDS_UsrStatus": {
+						"modelConfig": {
+							"path": "PDS.UsrStatus"
+						}
+					},
+					"PDS_UsrPrice": {
+						"modelConfig": {
+							"path": "PDS.UsrPrice"
 						}
 					}
+				}
+			},
+			{
+				"operation": "merge",
+				"path": [
+					"attributes",
+					"Items",
+					"modelConfig",
+					"sortingConfig"
+				],
+				"values": {
+					"default": [
+						{
+							"direction": "asc",
+							"columnName": "CreatedOn"
+						}
+					]
 				}
 			}
 		]/**SCHEMA_VIEW_MODEL_CONFIG_DIFF*/,
@@ -101,7 +174,24 @@ define("UsrYacht_ListPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 					"config"
 				],
 				"values": {
-					"entitySchemaName": "UsrYacht"
+					"entitySchemaName": "UsrYacht",
+					"attributes": {
+						"UsrName": {
+							"path": "UsrName"
+						},
+						"UsrManager": {
+							"path": "UsrManager"
+						},
+						"UsrCaptain": {
+							"path": "UsrCaptain"
+						},
+						"UsrStatus": {
+							"path": "UsrStatus"
+						},
+						"UsrPrice": {
+							"path": "UsrPrice"
+						}
+					}
 				}
 			}
 		]/**SCHEMA_MODEL_CONFIG_DIFF*/,

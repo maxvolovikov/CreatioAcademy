@@ -1,4 +1,4 @@
-define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEMA_ARGS*/()/**SCHEMA_ARGS*/ {
+define("UsrYacht_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA_DEPS*/, function/**SCHEMA_ARGS*/(sdk)/**SCHEMA_ARGS*/ {
 	return {
 		viewConfigDiff: /**SCHEMA_VIEW_CONFIG_DIFF*/[
 			{
@@ -292,6 +292,29 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 			},
 			{
 				"operation": "insert",
+				"name": "CaptainEmail",
+				"values": {
+					"layoutConfig": {
+						"column": 1,
+						"colSpan": 1,
+						"row": 9,
+						"rowSpan": 1
+					},
+					"type": "crt.EmailInput",
+					"label": "$Resources.Strings.PDS_UsrCaptainEmail_mkutg0f",
+					"control": "$PDS_UsrCaptainEmail_mkutg0f",
+					"labelPosition": "auto",
+					"placeholder": "",
+					"tooltip": "",
+					"needHandleSave": false,
+					"readonly": true
+				},
+				"parentName": "SideAreaProfileContainer",
+				"propertyName": "items",
+				"index": 8
+			},
+			{
+				"operation": "insert",
 				"name": "Length",
 				"values": {
 					"layoutConfig": {
@@ -439,11 +462,29 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 					"PDS_UsrLength_dqztabd": {
 						"modelConfig": {
 							"path": "PDS.UsrLength"
+						},
+						"validators": {
+							"MySuperValidator": {
+								"type": "usr.YTValidator",
+								"params": {
+									"settingCode": "UsrYachtMinLength",
+									"message": "#ResourceString(LengthCannotBeLess)#"
+								}
+							}
 						}
 					},
 					"PDS_UsrPrice_kc2lvcw": {
 						"modelConfig": {
 							"path": "PDS.UsrPrice"
+						},
+						"validators": {
+							"MySuperValidator": {
+								"type": "usr.YTValidator",
+								"params": {
+									"settingCode": "UsrYachtMinPrice",
+									"message": "#ResourceString(PriceCannotBeLess)#"
+								}
+							}
 						}
 					},
 					"PDS_UsrCaptain_iz86sil": {
@@ -555,6 +596,11 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 						"modelConfig": {
 							"path": "PDS.UsrTicketPrice"
 						}
+					},
+					"PDS_UsrCaptainEmail_mkutg0f": {
+						"modelConfig": {
+							"path": "PDS.UsrCaptainEmail_mkutg0f"
+						}
 					}
 				}
 			},
@@ -591,6 +637,10 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 							"attributes": {
 								"UsrStatusDescription": {
 									"path": "UsrStatus.Description",
+									"type": "ForwardReference"
+								},
+								"UsrCaptainEmail_mkutg0f": {
+									"path": "UsrCaptain.Email",
 									"type": "ForwardReference"
 								}
 							}
@@ -631,6 +681,37 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
             }
 		]/**SCHEMA_HANDLERS*/,
 		converters: /**SCHEMA_CONVERTERS*/{}/**SCHEMA_CONVERTERS*/,
-		validators: /**SCHEMA_VALIDATORS*/{}/**SCHEMA_VALIDATORS*/
+		validators: /**SCHEMA_VALIDATORS*/{
+            "usr.YTValidator": {
+                validator: function (config) {
+                    return async function (control) {
+                        let value = control.value;
+                        let setting = await new sdk.SysSettingsService().getByCode(config.settingCode);
+                        let minValue = setting.value;
+                        let valueIsCorrect = value >= minValue;
+                        var result;
+                        if (valueIsCorrect) {
+                            result = null;
+                        } else {
+                            result = {
+                                "usr.YTValidator": {
+                                    message: config.message
+                                }
+                            };
+                        }
+                        return result;
+                    };
+                },
+                params: [
+                    {
+                        name: "settingCode"
+                    },
+                    {
+                        name: "message"
+                    }
+                ],
+                async: true
+            }
+		}/**SCHEMA_VALIDATORS*/
 	};
 });

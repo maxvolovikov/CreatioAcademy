@@ -43,6 +43,27 @@
   "A4": "6c0b65b3-07d3-4aa9-883a-80bf68f4bdb6",
   "A5": "1a34358a-19a7-462c-a370-4dd62cf0303d"
 }
++ MetaData.Schema.B2 {
+  "UId": "ede5d475-8451-6758-bb7d-ae76e1b792fc",
+  "A2": "LengthCannotBeLess",
+  "A3": "6c0b65b3-07d3-4aa9-883a-80bf68f4bdb6",
+  "A4": "6c0b65b3-07d3-4aa9-883a-80bf68f4bdb6",
+  "A5": "1a34358a-19a7-462c-a370-4dd62cf0303d"
+}
++ MetaData.Schema.B2 {
+  "UId": "006b2a3a-08b9-5ca8-2c22-b3686aadda6a",
+  "A2": "PriceCannotBeLess",
+  "A3": "6c0b65b3-07d3-4aa9-883a-80bf68f4bdb6",
+  "A4": "6c0b65b3-07d3-4aa9-883a-80bf68f4bdb6",
+  "A5": "1a34358a-19a7-462c-a370-4dd62cf0303d"
+}
++ MetaData.Schema.B2 {
+  "UId": "724de099-7fa0-6b93-ef04-280320bdb499",
+  "A2": "CaptainEmail_label",
+  "A3": "6c0b65b3-07d3-4aa9-883a-80bf68f4bdb6",
+  "A4": "6c0b65b3-07d3-4aa9-883a-80bf68f4bdb6",
+  "A5": "1a34358a-19a7-462c-a370-4dd62cf0303d"
+}
 = MetaData.Schema.B2.["fd9e5bd2-19ad-68b5-1356-fe7b39d36f28"].A4 "6c0b65b3-07d3-4aa9-883a-80bf68f4bdb6"
 = MetaData.Schema.B2.["a77180d7-a9d0-5c7d-a47b-74c0545a1774"].A4 "6c0b65b3-07d3-4aa9-883a-80bf68f4bdb6"
 = MetaData.Schema.B2.["a53e6c9a-741a-21de-9293-9d87d6014595"].A4 "6c0b65b3-07d3-4aa9-883a-80bf68f4bdb6"
@@ -63,6 +84,9 @@
   "35ef47b0-254a-61bc-81bc-d0e7767314f9",
   "1141d3bd-0c28-2d5e-fe6d-cf0ef0308bf2",
   "9e44917d-cdce-92d2-49ae-ee06bd146687",
+  "ede5d475-8451-6758-bb7d-ae76e1b792fc",
+  "006b2a3a-08b9-5ca8-2c22-b3686aadda6a",
+  "724de099-7fa0-6b93-ef04-280320bdb499",
   "fd9e5bd2-19ad-68b5-1356-fe7b39d36f28",
   "a77180d7-a9d0-5c7d-a47b-74c0545a1774",
   "a53e6c9a-741a-21de-9293-9d87d6014595",
