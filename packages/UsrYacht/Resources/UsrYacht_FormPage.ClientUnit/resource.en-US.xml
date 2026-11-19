@@ -3,9 +3,11 @@
 	<Group Type="String">
 		<Items>
 			<Item Name="Caption" Value="Yachts form page" />
+			<Item Name="LocalizableStrings.Button_Actions_caption.Value" Value="Actions" />
 			<Item Name="LocalizableStrings.CaptainEmail_label.Value" Value="Cap's email" />
 			<Item Name="LocalizableStrings.Categories_label.Value" Value="Categories" />
 			<Item Name="LocalizableStrings.LengthCannotBeLess.Value" Value="Yacht length is too short!" />
+			<Item Name="LocalizableStrings.MenuItem_30ofk0t_caption.Value" Value="Average Yacht Ticket Price" />
 			<Item Name="LocalizableStrings.PriceCannotBeLess.Value" Value="Price is too low!" />
 			<Item Name="LocalizableStrings.PushMeButton_caption.Value" Value="Push me" />
 			<Item Name="LocalizableStrings.addRecord_20b1s9t_caption.Value" Value="Add new" />
